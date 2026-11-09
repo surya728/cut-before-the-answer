@@ -37,3 +37,6 @@ Scripts cannot prove visual delivery or ad performance. Rubric judgments may sha
 AI assistance: Codex helped implement and inspect the tool. Final decisions and interview explanation must be understood by the submitter.
 
 Original sample: `original.txt`. It contains no supplied Kuku content.
+
+## No-key demonstration
+Open the workbench and load `original-results.json` in **Open saved results**. It is an actual Gemini result on the original sample. New generation requires your own API key. Tested with streamlit 1.67.0, google-genai 3.0.0 and pydantic 2.14.3.

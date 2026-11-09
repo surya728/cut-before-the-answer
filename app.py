@@ -33,7 +33,7 @@ if r:
  st.download_button('Download results JSON',json.dumps(r,indent=2),file_name='promo-results.json')
  csv_buffer=io.StringIO(); fields=['rank','episode','start','end','duration','score','needs_review','title','hook','cliffhanger','unanswered_question','why_it_works']; writer=csv.DictWriter(csv_buffer,fieldnames=fields,extrasaction='ignore'); writer.writeheader(); writer.writerows(r['ranked'])
  st.download_button('Download ranked CSV',csv_buffer.getvalue(),file_name='ranked-promos.csv')
- limit=st.slider('Recommendations to show',1,max(1,len(r['ranked'])),min(10,max(1,len(r['ranked']))))
+ limit=st.slider('Recommendations to show',1,len(r['ranked']),min(10,len(r['ranked']))) if len(r['ranked'])>1 else len(r['ranked'])
  for c in r['ranked'][:limit]:
   with st.container(border=True):
    st.subheader(f"#{c['rank']}  {c['title']}")

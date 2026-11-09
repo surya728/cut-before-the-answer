@@ -1,0 +1,130 @@
+{
+  "version": "1.0",
+  "model": "gemini-3.1-flash-lite",
+  "mode": "gemini",
+  "elapsed_seconds": 5.19,
+  "episodes": [
+    {
+      "episode": "Original sample",
+      "state": "complete",
+      "candidates": 1,
+      "rejected": 0
+    }
+  ],
+  "complete": true,
+  "ranked": [
+    {
+      "start_id": 1,
+      "end_id": 10,
+      "hook_id": 1,
+      "cliffhanger_id": 10,
+      "title": "The Death Certificate Mystery",
+      "hook": "Why is my name on tomorrow's death certificate?",
+      "cliffhanger": "He died three years ago.",
+      "unanswered_question": "If Maya's brother died three years ago, who is currently calling her from a location directly behind her?",
+      "why_it_works": "The promo establishes high personal stakes immediately and escalates the supernatural threat until it culminates in a chilling revelation that contradicts reality.",
+      "episode": "Original sample",
+      "source": "original.txt",
+      "start": "00:00.00",
+      "end": "00:42.00",
+      "duration": 42.0,
+      "start_seconds": 0.0,
+      "end_seconds": 42.0,
+      "excerpt": [
+        {
+          "id": 1,
+          "kind": "MAYA (Alarmed)",
+          "start": 0.0,
+          "end": 3.0,
+          "text": "\"Why is my name on tomorrow's death certificate?\"",
+          "dialogue": true
+        },
+        {
+          "id": 2,
+          "kind": "CLERK (Dismissive)",
+          "start": 3.0,
+          "end": 7.0,
+          "text": "\"The printer makes mistakes.\"",
+          "dialogue": true
+        },
+        {
+          "id": 3,
+          "kind": "MAYA (Firm)",
+          "start": 7.0,
+          "end": 12.0,
+          "text": "\"It has my address. And the scar on my wrist.\"",
+          "dialogue": true
+        },
+        {
+          "id": 4,
+          "kind": "ACTION",
+          "start": 12.0,
+          "end": 16.0,
+          "text": "The clerk locks the front door and turns the sign to CLOSED.",
+          "dialogue": false
+        },
+        {
+          "id": 5,
+          "kind": "CLERK (Low)",
+          "start": 16.0,
+          "end": 20.0,
+          "text": "\"Who else saw this?\"",
+          "dialogue": true
+        },
+        {
+          "id": 6,
+          "kind": "MAYA (Uneasy)",
+          "start": 20.0,
+          "end": 25.0,
+          "text": "\"I sent a photograph to my brother.\"",
+          "dialogue": true
+        },
+        {
+          "id": 7,
+          "kind": "ACTION",
+          "start": 25.0,
+          "end": 29.0,
+          "text": "Every phone in the office begins to ring simultaneously.",
+          "dialogue": false
+        },
+        {
+          "id": 8,
+          "kind": "CLERK (Terrified)",
+          "start": 29.0,
+          "end": 34.0,
+          "text": "\"Do not answer him. Whatever voice you hear.\"",
+          "dialogue": true
+        },
+        {
+          "id": 9,
+          "kind": "ACTION",
+          "start": 34.0,
+          "end": 38.0,
+          "text": "Maya looks at her phone. The caller photograph shows her brother standing behind her.",
+          "dialogue": false
+        },
+        {
+          "id": 10,
+          "kind": "MAYA (Whisper)",
+          "start": 38.0,
+          "end": 42.0,
+          "text": "\"He died three years ago.\"",
+          "dialogue": true
+        }
+      ],
+      "critique": {
+        "hook": 5,
+        "cliffhanger": 5,
+        "clarity": 4,
+        "pacing": 5,
+        "weakness": "The transition from the brother being a sender to the phone caller revealing a supernatural entity happens very quickly, potentially leaving the emotional weight of the brother's previous death underdeveloped.",
+        "outside_context_needed": false
+      },
+      "score": 95.0,
+      "needs_review": false,
+      "rank": 1
+    }
+  ],
+  "rejected": [],
+  "duplicates": []
+}
