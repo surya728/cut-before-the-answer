@@ -44,7 +44,7 @@ class SavedRun(BaseModel):
  rejected:list[dict]
  complete:bool
 def validate_results(data):
- SavedRun.model_validate(data)
+ SavedRun.model_validate(data,strict=True)
  return data
 
 def seconds(s):

@@ -32,7 +32,7 @@ Manual fallback: provide `--manual folder` with `episode-001.json` etc. Each fil
 Scripts cannot prove visual delivery or ad performance. Rubric judgments may share the selecting model's biases. Continuous clips only. Uploaded script content is sent to the configured Gemini API. The public sample is original fiction; Kuku scripts and results belong in the private reviewer package.
 
 ## Verification
-`python -m unittest test_engine test_menu -v`
+`python -m unittest discover -p "test_*.py" -v`
 
 AI assistance: Codex helped implement and inspect the tool. Final decisions and interview explanation must be understood by the submitter.
 
@@ -40,3 +40,8 @@ Original sample: `original.txt`. It contains no supplied Kuku content.
 
 ## No-key demonstration
 Open the workbench and load `original-results.json` in **Open saved results**. It is an actual Gemini result on the original sample. New generation requires your own API key. Tested with streamlit 1.67.0, google-genai 3.0.0 and pydantic 2.14.3.
+
+## Live app
+https://surya-cut-before-the-answer.streamlit.app/
+
+Click **Explore original sample** for an immediate no-key demonstration. For new scripts, enter your own Gemini key. No shared server-side key is deployed. See `SMOKE_TEST_REPORT.md` for verified behavior and limits.

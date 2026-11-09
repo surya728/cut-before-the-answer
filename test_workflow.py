@@ -16,6 +16,9 @@ class WorkflowTests(unittest.TestCase):
  def test_score_range(self):
   self.clip['score']=101
   with self.assertRaises(ValueError):engine.validate_results(self.sample)
+  self.clip['score']=95
+  self.clip['excerpt'][0]['start']='0.0'
+  with self.assertRaises(ValueError):engine.validate_results(self.sample)
  def test_large_input(self):
   with self.assertRaisesRegex(ValueError,'20MB'):engine.parse('large',b'x'*20_000_001)
  def test_empty_zip(self):
