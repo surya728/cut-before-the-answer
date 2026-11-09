@@ -1,8 +1,9 @@
+from pathlib import Path
 import unittest
 from engine import parse,validate,load
 class TimingTests(unittest.TestCase):
  def setUp(self):
-  self.ep=load('original.txt')[0]
+  self.ep=load(Path(__file__).parent/'original.txt')[0]
   self.c=dict(start_id=1,end_id=10,hook_id=1,cliffhanger_id=10,title='t',hook='h',cliffhanger='c',unanswered_question='q',why_it_works='w')
  def test_sample(self): self.assertEqual(validate(self.ep,self.c)['duration'],42)
  def test_unknown(self):

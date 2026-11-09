@@ -1,8 +1,9 @@
+from pathlib import Path
 import unittest
 from engine import load,boundary_menu,validate
 class MenuTests(unittest.TestCase):
  def test_menu_boundaries(self):
-  ep=load('original.txt')[0]
+  ep=load(Path(__file__).parent/'original.txt')[0]
   menu=boundary_menu(ep)
   self.assertTrue(menu)
   for w in menu:

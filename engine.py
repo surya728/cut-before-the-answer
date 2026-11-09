@@ -22,10 +22,36 @@ class Critique(BaseModel):
  pacing:int=Field(ge=0,le=5)
  weakness:str
  outside_context_needed:bool
+class SavedEntry(BaseModel):
+ id:int
+ start:float
+ end:float
+ kind:str
+ text:str
+class SavedClip(Candidate):
+ rank:int=Field(ge=1)
+ episode:str
+ start:str
+ end:str
+ duration:float=Field(ge=20,le=60)
+ score:float=Field(ge=0,le=100)
+ needs_review:bool
+ critique:Critique
+ excerpt:list[SavedEntry]
+class SavedRun(BaseModel):
+ episodes:list[dict]
+ ranked:list[SavedClip]
+ rejected:list[dict]
+ complete:bool
+def validate_results(data):
+ SavedRun.model_validate(data)
+ return data
+
 def seconds(s):
  m,s=s.split(':'); return round(int(m)*60+float(s),2)
 def stamp(s): return f'{int(s//60):02d}:{s%60:05.2f}'
 def parse(name,data):
+ if len(data)>20_000_000: raise ValueError('Input exceeds 20MB')
  text=data.decode('utf-8-sig'); match=re.search(r'EPISODE NUMBER:\s*([^\n]+)',text); entries=[]
  pattern=r'\*\*([^\n]+?)\*\*\s*\nStart: \((\d+:\d+\.\d+)\) \| End: \((\d+:\d+\.\d+)\)\s*\n(.*?)(?=\n\*\*|\nSCENE \d|\n--- SCRIPT END|\Z)'
  for label,a,b,body in re.findall(pattern,text,re.S):
@@ -82,6 +108,7 @@ def call_ai(prompt,schema,model,folder,tag,api_key=None):
  for attempt in range(3):
   try:
    response=client.interactions.create(model=model,input=prompt,response_format={'type':'text','mime_type':'application/json','schema':schema.model_json_schema()},store=False)
+   (folder/f'{tag}.attempt-{attempt}.response.json').write_text(response.model_dump_json(),encoding='utf-8')
    (folder/f'{tag}.response.json').write_text(response.model_dump_json(),encoding='utf-8')
    return schema.model_validate_json(response.output_text).model_dump()
   except Exception as exc:

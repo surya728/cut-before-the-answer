@@ -1,7 +1,7 @@
 import csv, io, json, os, tempfile
 from pathlib import Path
 import streamlit as st
-from engine import run
+from engine import run, validate_results
 st.set_page_config(page_title='Cut Before the Answer',page_icon='✂',layout='wide')
 st.markdown('<style>.stApp{background:#10141c}h1{letter-spacing:-2px}.stMetric{background:#1b2230;padding:16px;border-radius:12px}</style>',unsafe_allow_html=True)
 st.caption('SURYA DEV VINOD · 230121059 · ENGINEERING PHYSICS')
@@ -13,10 +13,12 @@ with st.sidebar:
  model=st.text_input('Model',value='gemini-3.1-flash-lite')
  uploaded=st.file_uploader('Screenplay ZIP or TXT',type=['zip','txt'])
  imported=st.file_uploader('Open saved results',type=['json'])
+ if st.button('Explore original sample'):
+  st.session_state['result']=validate_results(json.loads((Path(__file__).parent/'original-results.json').read_text(encoding='utf-8')))
  st.caption('Continuous clips · 20–60 seconds · Script evidence only')
 if imported:
- try: st.session_state['result']=json.load(imported)
- except Exception as e: st.error(str(e))
+ try: st.session_state['result']=validate_results(json.load(imported))
+ except Exception: st.error('This file is not a valid promo-results JSON. Please export results from this tool and try again.')
 if st.button('Find promos',type='primary',disabled=not uploaded):
  if not (key or os.getenv('GEMINI_API_KEY')): st.error('Enter a Gemini API key first.')
  else:
